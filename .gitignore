@@ -1,0 +1,8 @@
+# Executable
+onda1d
+
+# Default gcc executable name (in case forgot -o)
+a.out
+
+# Generated data
+onda1d02.dat
