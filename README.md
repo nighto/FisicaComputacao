@@ -2,7 +2,7 @@
 
 ## Compiling
 
-    gcc onda1d.c -o onda1d
+    make
 
 ## Running
 
