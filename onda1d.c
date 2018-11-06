@@ -23,7 +23,7 @@ int main(void) {
     float c, **u, t, gama, deltat, deltax, pulso;
     int i, j;
 
-    arq = fopen("onda1d02.dat", "w");
+    arq = fopen("onda1d02.csv", "w");
 
     //alocacao dinamica da matriz
     u = (float **)malloc((n + 1) * (sizeof(float *)));
@@ -86,12 +86,19 @@ int main(void) {
           //partindo pra proxima itercao no tempo
     }
 
+    // cabeçalho
+    fprintf(arq, ",");
+    for (j = 0; j < insttempo; j++) {
+        fprintf(arq, "%d,", j);
+    }
+    fprintf(arq, "\n");
+
     // imprimindo o resultado da simulacao em um arquivo
     // observe que a primeira coluna do arquivo contem a discretizacao espacial x (x=0, x=0.01, x=0.02,.....x=10)
     for (i = 0; i < n; i++) {
-        fprintf(arq, " %2.3f  ", (float)i * deltax);
+        fprintf(arq, "%2.3f,", (float)i * deltax);
         for (j = 0; j < insttempo; j++) {
-            fprintf(arq, "%2.5f  ", u[i][j]);
+            fprintf(arq, "%2.5f,", u[i][j]);
         }
         fprintf(arq, "\n");
     }
@@ -115,6 +122,10 @@ float veloc(float x) { //na equacao eh o nosso C
     float valor;
 
     valor = 1.0;
+
+    if (x > 7.0) {
+        valor = 2.0;
+    }
 
     return valor;
 }
